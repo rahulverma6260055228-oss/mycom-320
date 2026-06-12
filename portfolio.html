@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Arjun Varma | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  color:#e2e8f0;
+  overflow-x:hidden;
+}
+
+/* Background */
+.bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-2;
+  background: linear-gradient(-45deg,#0f172a,#1e293b,#0b1220,#0f172a);
+  background-size:400% 400%;
+  animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.blob{
+  position:absolute;
+  width:300px;
+  height:300px;
+  filter: blur(120px);
+  opacity:0.25;
+  border-radius:50%;
+  animation: float 10s infinite ease-in-out;
+}
+
+.blob:nth-child(1){top:10%;left:10%;background:#38bdf8;}
+.blob:nth-child(2){bottom:10%;right:10%;background:#a78bfa;}
+
+@keyframes float{
+  0%{transform:translateY(0px)}
+  50%{transform:translateY(40px)}
+  100%{transform:translateY(0px)}
+}
+
+/* HERO */
+header{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
+
+.hero h1{
+  font-size:3.5rem;
+  color:#38bdf8;
+}
+
+.hero h2{
+  font-weight:400;
+  margin-top:10px;
+  color:#cbd5e1;
+}
+
+.typing{
+  margin-top:15px;
+  color:#94a3b8;
+  font-size:1.1rem;
+  min-height:30px;
+  border-right:2px solid #38bdf8;
+  display:inline-block;
+  white-space:nowrap;
+  overflow:hidden;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:25px;
+  padding:12px 25px;
+  background:#38bdf8;
+  color:#0f172a;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+  background:#0ea5e9;
+}
+
+/* sections */
+section{
+  padding:80px 15%;
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s;
+}
+
+section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.section-title{
+  font-size:2rem;
+  margin-bottom:20px;
+  color:#38bdf8;
+}
+
+.card{
+  background:rgba(30,41,59,0.8);
+  padding:20px;
+  border-radius:12px;
+  margin-top:15px;
+  backdrop-filter: blur(10px);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.skills span{
+  display:inline-block;
+  background:#334155;
+  padding:8px 15px;
+  margin:5px;
+  border-radius:20px;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  background:#0b1220;
+  color:#64748b;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+  <div class="blob"></div>
+  <div class="blob"></div>
+</div>
+
+<header>
+  <div class="hero">
+    <h1>Arjun Varma</h1>
+    <h2>BCA Student | Shriram Institute of Professional Studies</h2>
+
+    <div class="typing" id="typing"></div>
+
+    <br/>
+    <a href="#about" class="btn">Explore My Work</a>
+  </div>
+</header>
+
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <div class="card">
+    I am Arjun Varma, a BCA student passionate about web development, UI design, and software programming.
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Education</h2>
+  <div class="card">
+    BCA - Shriram Institute of Professional Studies (2026 - Present)
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Skills</h2>
+  <div class="card skills">
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>JavaScript</span>
+    <span>Python</span>
+    <span>C</span>
+    <span>C++</span>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Contact</h2>
+  <div class="card">
+    📞 6262457225 <br/>
+    📧 rahulverma6260055228@gmail.com
+  </div>
+</section>
+
+<footer>
+  © 2026 Arjun Varma | Portfolio
+</footer>
+
+<script>
+// scroll animation
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+},{threshold:0.15});
+
+sections.forEach(sec=>observer.observe(sec));
+
+// typing animation
+const text = "Web Developer • C/C++ Programmer • UI Designer";
+let i = 0;
+
+function type(){
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type, 70);
+  }
+}
+type();
+</script>
+
+</body>
+</html>
